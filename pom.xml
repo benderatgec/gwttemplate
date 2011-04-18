@@ -18,6 +18,13 @@
 	</properties>
 	<dependencies>
 		<dependency>
+			<groupId>gwt-incubator</groupId>
+			<artifactId>gwt-incubator</artifactId>
+			<version>20101117</version>
+			<classifier>r1766</classifier>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
 			<version>${gwtVersion}</version>
@@ -139,7 +146,30 @@
 					<webappDirectory>${webappDirectory}</webappDirectory>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>7.2.2.v20101205</version>
 
+				<configuration>
+					<webApp>${basedir}/target/gwttemplate-0.0.1-SNAPSHOT.war</webApp>
+					<stopPort>9966</stopPort>
+					<stopKey>gwttemplate</stopKey>
+					<connectors>
+						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+							<port>8990</port>
+							<maxIdleTime>6000000</maxIdleTime>
+						</connector>
+					</connectors>
+
+					<systemProperties implementation="org.mortbay.jetty.plugin.SystemProperties">
+						<systemProperty implementation="org.mortbay.jetty.plugin.SystemProperty">
+							<name>gwttemplate.home.logs</name>
+							<value>.</value>
+						</systemProperty>
+					</systemProperties>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
