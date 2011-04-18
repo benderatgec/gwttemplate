@@ -118,6 +118,7 @@
 					<runTarget>gwttemplate.html</runTarget>
 					<hostedWebapp>${webappDirectory}</hostedWebapp>
 					<i18nMessagesBundle>com.greenenergycorp.gwttemplate.Messages</i18nMessagesBundle>
+					<style>PRETTY</style>
 				</configuration>
 			</plugin>
 
