@@ -16,6 +16,8 @@
 
 package com.greenenergycorp.gwttemplate.shared.gwtp;
 
+import java.util.List;
+
 import com.gwtplatform.dispatch.shared.Result;
 
 /**
@@ -23,12 +25,8 @@ import com.gwtplatform.dispatch.shared.Result;
  */
 public class SendTextToServerResult implements Result
 {
-    private String response;
+    private List<String> results;
 
-    public SendTextToServerResult( final String response )
-    {
-        this.response = response;
-    }
 
     /**
      * For serialization only.
@@ -38,9 +36,14 @@ public class SendTextToServerResult implements Result
     {
     }
 
-    public String getResponse()
+    public SendTextToServerResult( List<String> results )
     {
-        return response;
+        this.results = results;
+    }
+
+    public List<String> getResponses()
+    {
+        return results;
     }
 
 }
