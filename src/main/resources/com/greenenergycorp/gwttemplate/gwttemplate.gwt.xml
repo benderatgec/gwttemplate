@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module rename-to='gwttemplate'>
-  <!-- Inherit the core Web Toolkit stuff.                        -->
-  <inherits name='com.google.gwt.user.User'/>
+	<!-- Inherit the core Web Toolkit stuff. -->
+	<inherits name='com.google.gwt.user.User' />
 
-  <!-- Inherit the default GWT style sheet.  You can change       -->
-  <!-- the theme of your GWT application by uncommenting          -->
-  <!-- any one of the following lines.                            -->
-  <inherits name='com.google.gwt.user.theme.standard.Standard'/>
-  <inherits name="com.google.common.collect.Collect"/>
-  <inherits name="com.google.gwt.logging.Logging"/>
-  <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
-  <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
+	<!-- Inherit the default GWT style sheet. You can change -->
+	<!-- the theme of your GWT application by uncommenting -->
+	<!-- any one of the following lines. -->
+	<inherits name='com.google.gwt.user.theme.standard.Standard' />
+	<inherits name="com.google.common.collect.Collect" />
+	<inherits name="com.google.gwt.logging.Logging" />
+	<!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
+	<!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/> -->
 
-  <!-- Other module inherits                                      -->
+	<!-- Other module inherits -->
+	<inherits name='com.gwtplatform.dispatch.Dispatch' />
+	<inherits name='com.google.gwt.inject.Inject' />
 
-  <!-- Specify the app entry point class.                         -->
-  <entry-point class='com.greenenergycorp.gwttemplate.client.gwttemplate'/>
+	<!-- Specify the app entry point class. -->
+	<entry-point class='com.greenenergycorp.gwttemplate.client.gwttemplate' />
 
-  <!-- Specify the paths for translatable code                    -->
-  <source path='client'/>
-  <source path='shared'/>
-  <set-property name="user.agent" value="gecko1_8,safari" />
-    <set-property name="gwt.logging.logLevel" value="FINE"/>         
-  <set-property name="gwt.logging.popupHandler" value="DISABLED"/> 
-  <set-property name="gwt.logging.simpleRemoteHandler" value="DISABLED" />
- 
+	<!-- Specify the paths for translatable code -->
+	<source path='client' />
+	<source path='shared' />
+	<set-property name="user.agent" value="gecko1_8,safari" />
+	<set-property name="gwt.logging.logLevel" value="FINE" />
+	<set-property name="gwt.logging.popupHandler" value="DISABLED" />
+	<set-property name="gwt.logging.simpleRemoteHandler" value="DISABLED" />
+
+	<define-configuration-property name="gin.ginjector" is-multi-valued="false" />
+	<set-configuration-property name="gin.ginjector" value="com.gwtplatform.samples.basic.client.MyGinjector" />
+
 </module>
+
+ 
