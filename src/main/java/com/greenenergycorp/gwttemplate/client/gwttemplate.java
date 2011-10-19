@@ -10,7 +10,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.SuggestOracle;
-
 import com.greenenergycorp.gwttemplate.client.gwtp.MyGinjector;
 import com.greenenergycorp.gwttemplate.shared.gwtp.SendTextToServer;
 import com.greenenergycorp.gwttemplate.shared.gwtp.SendTextToServerResult;
@@ -36,7 +35,7 @@ public class gwttemplate implements EntryPoint
         @Override
         public void requestSuggestions( final Request request, final Callback callback )
         {
-            ginjector.getDispatchAsync().execute( new SendTextToServer( "some text" ), new AsyncCallback<SendTextToServerResult>() {
+            ginjector.getDispatchAsync().execute( new SendTextToServer( request.getQuery() ), new AsyncCallback<SendTextToServerResult>() {
 
                 @Override
                 public void onFailure( Throwable caught )
