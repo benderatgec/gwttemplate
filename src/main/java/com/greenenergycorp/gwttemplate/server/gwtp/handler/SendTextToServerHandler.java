@@ -1,23 +1,25 @@
 package com.greenenergycorp.gwttemplate.server.gwtp.handler;
 
+import java.util.ArrayList;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import com.greenenergycorp.gwttemplate.shared.gwtp.SendTextToServer;
+import com.greenenergycorp.gwttemplate.shared.gwtp.SendTextToServerResult;
 import com.gwtplatform.dispatch.server.ExecutionContext;
 import com.gwtplatform.dispatch.server.actionhandler.ActionHandler;
 import com.gwtplatform.dispatch.shared.ActionException;
-
-import com.greenenergycorp.gwttemplate.shared.gwtp.FieldVerifier;
-import com.greenenergycorp.gwttemplate.shared.gwtp.SendTextToServer;
-import com.greenenergycorp.gwttemplate.shared.gwtp.SendTextToServerResult;
 
 public class SendTextToServerHandler implements ActionHandler<SendTextToServer, SendTextToServerResult>
 {
 
     private Provider<HttpServletRequest> requestProvider;
     private ServletContext servletContext;
+    private ArrayList<String> theList = Lists.newArrayList( "apple", "banana", "kiwi", "taco", "table", "kwikset", "beach", "ape" );
 
     @Inject
     SendTextToServerHandler( ServletContext servletContext, Provider<HttpServletRequest> requestProvider )
@@ -29,21 +31,14 @@ public class SendTextToServerHandler implements ActionHandler<SendTextToServer, 
     @Override
     public SendTextToServerResult execute( SendTextToServer action, ExecutionContext context ) throws ActionException
     {
-
-        String input = action.getTextToServer();
-
-        // Verify that the input is valid.
-        if ( !FieldVerifier.isValidName( input ) )
+        ArrayList<String> list = Lists.newArrayList();
+        String query = action.getTextToServer();
+        for ( String entry : theList )
         {
-            // If the input is not valid, throw an IllegalArgumentException back to
-            // the client.
-            throw new ActionException( "Name must be at least 4 characters long" );
+            if ( entry.contains( query ) )
+                list.add( entry );
         }
-
-        String serverInfo = servletContext.getServerInfo();
-        String userAgent = requestProvider.get().getHeader( "User-Agent" );
-        return new SendTextToServerResult( "Hello, " + input + "!<br><br>I am running " + serverInfo + ".<br><br>It looks like you are using:<br>"
-            + userAgent );
+        return new SendTextToServerResult( list );
     }
 
     @Override
